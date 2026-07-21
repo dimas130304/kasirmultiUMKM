@@ -1,14 +1,12 @@
 [providers]
-providers = ['php', 'node']
+providers = ['php']
 
 [phases.setup]
-nixPkgs = ['php82', 'php82Extensions.sqlite3', 'php82Extensions.pdo_sqlite', 'composer', 'nodejs']
+nixPkgs = ['php82', 'composer']
 
 [phases.build]
 cmds = [
   'composer install --ignore-platform-reqs --no-dev --optimize-autoloader',
-  'npm install',
-  'npm run build',
   'touch database/database.sqlite',
   'php artisan migrate --force'
 ]
